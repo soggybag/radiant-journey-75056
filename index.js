@@ -1,11 +1,13 @@
+//
+
 var express = require('express');
 var hbs = require('express-hbs');
 var db = require('sqlite');
 var Promise = require('bluebird');
 var cookieParser = require('cookie-parser');
-var expressSanitizer = require('express-sanitizer');
-var bodyParser = require('body-parser')
 
+var expressSanitizer = require('express-sanitizer'); // *****
+var bodyParser = require('body-parser'); // ******
 
 var app = express();
 
@@ -123,3 +125,6 @@ Promise.resolve()
   .catch((err) => console.error(err.stack))
   // Finally, launch the Node.js app
   .finally(() => app.listen(process.env.PORT || 3000));
+
+module  = {}
+// return module.exports
