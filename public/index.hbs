@@ -118,18 +118,18 @@
           </article>
         {{/each}}
       </div>
+
+      <div>
+        <form id="test-form">
+          <textarea id="text-area">
+              What...
+          </textarea>
+          <input type="submit" />
+        </form>
+      </div>
     </main>
   </div>
 <script async href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script>
-  function clap() {
-    fetch('localhost:3000/clap').then((claps) => {
-      console.log("claps:"+claps)
-    }).catch((err) => {
-      console.log(err.message)
-    })
-  }
-</script>
-<script src="bundle.js"></script>
+<script type="text/javascript" src="bundle.js"></script>
 </body>
 </html>

@@ -3,9 +3,20 @@ var hbs = require('express-hbs');
 var db = require('sqlite');
 var Promise = require('bluebird');
 var cookieParser = require('cookie-parser');
+var expressSanitizer = require('express-sanitizer');
+var bodyParser = require('body-parser')
 
 
 var app = express();
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
+// Mount express-sanitizer here
+app.use(expressSanitizer()); // this line follows bodyParser() instantiations
+
+// Serve static resources from the public folder
+app.use(express.static('public'));
 
 app.engine('hbs', hbs.express4({
   partialsDir: __dirname + '/public/partials'
@@ -18,6 +29,8 @@ app.use(express.urlencoded({ extended: true })); // to support URL-encoded bodie
 app.use(cookieParser('secretsecret'));
 
 app.get('/', async (req, res, next) => {
+
+
   try {
     let posts = await db.all("SELECT * FROM Post");
     let login = req.signedCookies && req.signedCookies.logged;
@@ -42,7 +55,7 @@ app.get('/', async (req, res, next) => {
 });
 
 app.post('/', async (req, res, next) => {
-  // console.log(req.body);
+  console.log(req.body);
   try {
     // const users = await db.all('SELECT * FROM User');
     // console.log(users);
